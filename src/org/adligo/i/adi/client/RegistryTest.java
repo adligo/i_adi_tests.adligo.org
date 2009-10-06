@@ -147,16 +147,25 @@ public class RegistryTest extends ATest {
 		Registry.replaceCheckedInvokerDelegates(map);
 		
 		I_CheckedInvoker isInA = Registry.getCheckedInvoker(KEY_A);
+		final I_CheckedInvoker originalIsInA = isInA;
 		assertEquals(CHECKED_INVOKER_A_RETURN, isInA.invoke(null));
 		
 		
 		map.put(KEY_A, CHECKED_INVOKER_B);
 		Registry.replaceCheckedInvokerDelegates(map);
+		
+		isInA = Registry.getCheckedInvoker(KEY_A);
 		assertEquals(CHECKED_INVOKER_B_RETURN, isInA.invoke(null));
+		assertTrue("Instances from the registry should match ",
+				isInA == originalIsInA);
 		
 		map.put(KEY_A, CHECKED_INVOKER_A);
 		Registry.replaceCheckedInvokerDelegates(map);
+		
 		assertEquals(CHECKED_INVOKER_A_RETURN, isInA.invoke(null));
 		
+		isInA = Registry.getCheckedInvoker(KEY_A);
+		assertTrue("Instances from the registry should match ",
+				isInA == originalIsInA);
 	}
 }
