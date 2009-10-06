@@ -114,7 +114,7 @@ public class RegistryTest extends ATest {
 				, cce);
 	}
 	
-	public void assertReplaceA_withB_withA() {
+	public void testReplaceA_withB_withA() {
 		Registry.clear();
 		Registry.debug();
 		
@@ -137,26 +137,26 @@ public class RegistryTest extends ATest {
 		
 	}
 	
-	public void assertCheckedReplaceA_withB_withA() {
+	public void testCheckedReplaceA_withB_withA() throws InvocationException {
 		Registry.clear();
 		Registry.debug();
 		
 		I_Map map = MapFactory.create();
-		map.put(KEY_A, INVOKER_A);
+		map.put(KEY_A, CHECKED_INVOKER_A);
 		
 		Registry.replaceCheckedInvokerDelegates(map);
 		
-		I_Invoker isInA = Registry.getInvoker(KEY_A);
-		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		I_CheckedInvoker isInA = Registry.getCheckedInvoker(KEY_A);
+		assertEquals(CHECKED_INVOKER_A_RETURN, isInA.invoke(null));
 		
 		
-		map.put(KEY_A, INVOKER_B);
+		map.put(KEY_A, CHECKED_INVOKER_B);
 		Registry.replaceCheckedInvokerDelegates(map);
-		assertEquals(INVOKER_B_RETURN, isInA.invoke(null));
+		assertEquals(CHECKED_INVOKER_B_RETURN, isInA.invoke(null));
 		
-		map.put(KEY_A, INVOKER_A);
+		map.put(KEY_A, CHECKED_INVOKER_A);
 		Registry.replaceCheckedInvokerDelegates(map);
-		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		assertEquals(CHECKED_INVOKER_A_RETURN, isInA.invoke(null));
 		
 	}
 }
