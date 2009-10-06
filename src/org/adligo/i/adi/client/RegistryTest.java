@@ -23,6 +23,22 @@ public class RegistryTest extends ATest {
 			return CHECKED_INVOKER_A_RETURN;
 		}
 	};	
+
+	private static final String KEY_B = "key_b";
+	
+	private static final String INVOKER_B_RETURN = "INVOKER_B";
+	private static final I_Invoker INVOKER_B = new I_Invoker() {
+		public Object invoke(Object valueObject) {
+			return INVOKER_B_RETURN;
+		}
+	};	
+
+	private static final String CHECKED_INVOKER_B_RETURN = "CHECKED_INVOKER_B";
+	private static final I_CheckedInvoker CHECKED_INVOKER_B = new I_CheckedInvoker() {
+		public Object invoke(Object valueObject) {
+			return CHECKED_INVOKER_B_RETURN;
+		}
+	};
 	
 	public void testAddInvoker() {
 		Registry.clear();
@@ -96,5 +112,51 @@ public class RegistryTest extends ATest {
 		assertNotNull("This should have thrown a class cast " +
 				"exception I_Invoker from I_CheckedInvoker "
 				, cce);
+	}
+	
+	public void assertReplaceA_withB_withA() {
+		Registry.clear();
+		Registry.debug();
+		
+		I_Map map = MapFactory.create();
+		map.put(KEY_A, INVOKER_A);
+		
+		Registry.replaceInvokerDelegates(map);
+		
+		I_Invoker isInA = Registry.getInvoker(KEY_A);
+		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		
+		
+		map.put(KEY_A, INVOKER_B);
+		Registry.replaceInvokerDelegates(map);
+		assertEquals(INVOKER_B_RETURN, isInA.invoke(null));
+		
+		map.put(KEY_A, INVOKER_A);
+		Registry.replaceInvokerDelegates(map);
+		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		
+	}
+	
+	public void assertCheckedReplaceA_withB_withA() {
+		Registry.clear();
+		Registry.debug();
+		
+		I_Map map = MapFactory.create();
+		map.put(KEY_A, INVOKER_A);
+		
+		Registry.replaceCheckedInvokerDelegates(map);
+		
+		I_Invoker isInA = Registry.getInvoker(KEY_A);
+		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		
+		
+		map.put(KEY_A, INVOKER_B);
+		Registry.replaceCheckedInvokerDelegates(map);
+		assertEquals(INVOKER_B_RETURN, isInA.invoke(null));
+		
+		map.put(KEY_A, INVOKER_A);
+		Registry.replaceCheckedInvokerDelegates(map);
+		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
+		
 	}
 }
