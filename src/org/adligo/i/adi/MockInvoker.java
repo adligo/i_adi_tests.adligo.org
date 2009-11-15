@@ -1,4 +1,6 @@
-package org.adligo.i.adi.client;
+package org.adligo.i.adi;
+
+import org.adligo.i.adi.client.I_Invoker;
 
 public class MockInvoker implements I_Invoker {
 	private I_MockInvokerCallback i_mockCallback;

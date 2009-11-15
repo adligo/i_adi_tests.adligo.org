@@ -1,4 +1,6 @@
-package org.adligo.i.adi.client;
+package org.adligo.i.adi;
+
+import org.adligo.i.adi.client.InvocationException;
 
 public interface I_MockCheckedInvokerCallback {
 	public Object mockCheckedInvoke(Object obj) throws InvocationException;

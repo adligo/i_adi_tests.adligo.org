@@ -1,4 +1,7 @@
-package org.adligo.i.adi.client;
+package org.adligo.i.adi;
+
+import org.adligo.i.adi.client.I_CheckedInvoker;
+import org.adligo.i.adi.client.InvocationException;
 
 public class MockCheckedInvoker implements I_CheckedInvoker {
 	private I_MockCheckedInvokerCallback checkedInvoker;
