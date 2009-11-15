@@ -9,7 +9,7 @@ import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.UtilEntryPoint;
 import org.adligo.tests.ATest;
 
-public class AdiGwtCompileUsedAllClasses extends ATest {
+public class AdiGwtCompileUsedAllClassesTests extends ATest {
 
 	public void testAllClassesUsed() throws Exception {
 		
