@@ -41,6 +41,7 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(new DoNothingInvoker());
 		//impl requires gwt_util
 		holder.addUsed(EventDelegator.class);
+		holder.addUsed(I18nConstantsFactory.class);
 		holder.addUsed(I_CheckedInvoker.class);
 		holder.addUsed(I_Invoker.class);
 		holder.addUsed(new InvocationException());
