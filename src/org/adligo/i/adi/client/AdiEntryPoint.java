@@ -53,6 +53,7 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(Registry.class);
 		holder.addUsed(new SimpleClock());
 		holder.addUsed(new SimpleSystemOut());
+		holder.addUsed(new SimpleSystemErr());
 		holder.addUsed(StandardInvokers.class);
 		holder.addUsed(new SynchronizedCheckedInvokerProxy(new DoNothingCheckedInvoker()));
 		holder.addUsed(new SynchronizedInvokerProxy(new DoNothingInvoker()));
