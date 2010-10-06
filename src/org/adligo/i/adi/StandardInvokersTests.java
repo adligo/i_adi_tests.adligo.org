@@ -10,6 +10,7 @@ import org.adligo.i.adi.client.I18nConstantsFactory;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.ProxyInvoker;
+import org.adligo.i.adi.client.Registry;
 import org.adligo.i.adi.client.SimpleClock;
 import org.adligo.i.adi.client.SimpleSystemErr;
 import org.adligo.i.adi.client.SimpleSystemOut;
@@ -17,6 +18,10 @@ import org.adligo.i.adi.client.StandardInvokers;
 
 public class StandardInvokersTests extends TestCase {
 
+	public void setUp() {
+		Registry.addOrReplaceInvoker(InvokerNames.CLOCK, SimpleClock.INSTANCE);
+	}
+	
 	public void testCacheWriter() {
 		I_Invoker in =  StandardInvokers.get(InvokerNames.CACHE_WRITER);
 		assertNotNull(in);

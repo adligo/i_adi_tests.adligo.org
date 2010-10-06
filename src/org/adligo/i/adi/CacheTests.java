@@ -1,6 +1,13 @@
-package org.adligo.i.adi.client;
+package org.adligo.i.adi;
 
-import org.adligo.i.adi.MockClock;
+import org.adligo.i.adi.client.Cache;
+import org.adligo.i.adi.client.CacheReader;
+import org.adligo.i.adi.client.CacheRemover;
+import org.adligo.i.adi.client.CacheWriter;
+import org.adligo.i.adi.client.I_Invoker;
+import org.adligo.i.adi.client.InvokerNames;
+import org.adligo.i.adi.client.ProxyInvoker;
+import org.adligo.i.adi.client.Registry;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
 import org.adligo.i.util.client.I_Map;
@@ -84,24 +91,27 @@ public class CacheTests extends ATest {
 		
 		//should write
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, Cache.items.get(KEY_1));
-		assertEquals(TIME_1, Cache.itemsEditTimes.get(KEY_1));
+		assertEquals(VALUE_1, Cache.getItem(KEY_1));
+		Long time =  Cache.getTime(KEY_1);
+		assertEquals(TIME_1, time.longValue());
 		
 		//shouldn't write
 		token.setSetPolicy(CacheWriterToken.ADD_ONLY_IF_NOT_PRESENT);
 		MockClock.setTime(TIME_2);
 		token.setValue(VALUE_1 + "a");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, Cache.items.get(KEY_1));
-		assertEquals(TIME_1, Cache.itemsEditTimes.get(KEY_1));
+		assertEquals(VALUE_1, Cache.getItem(KEY_1));
+		time =  Cache.getTime(KEY_1);
+		assertEquals(TIME_1, time.longValue());
 		
 		//should replace
 		token.setSetPolicy(CacheWriterToken.REPLACE_ONLY_IF_PRESENT);
 		MockClock.setTime(TIME_3);
 		token.setValue(VALUE_1 + "b");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1 + "b", Cache.items.get(KEY_1));
-		assertEquals(TIME_3, Cache.itemsEditTimes.get(KEY_1));
+		assertEquals(VALUE_1 + "b", Cache.getItem(KEY_1));
+		time =  Cache.getTime(KEY_1);
+		assertEquals(TIME_3, time.longValue());
 		
 		String readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertEquals(VALUE_1 + "b", readResultOne);
@@ -121,7 +131,8 @@ public class CacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		assertNull(Cache.itemsEditTimes.get(KEY_1));
+		time =  Cache.getTime(KEY_1);
+		assertNull(time);
 		
 		token = new CacheWriterToken();
 		token.setName(KEY_1);
@@ -138,6 +149,7 @@ public class CacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		assertNull(Cache.itemsEditTimes.get(KEY_1));
+		time =  Cache.getTime(KEY_1);
+		assertNull(time);
 	}
 }
