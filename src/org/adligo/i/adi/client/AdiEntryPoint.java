@@ -62,6 +62,9 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(CacheRemoverToken.class);
 		holder.addUsed(new CacheWriterToken());
 		holder.addUsed(new ConfigRequest(null));
+		
+		//small hack
+		holder.addUsed(new CacheTests());
 	}
 
 }
