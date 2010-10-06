@@ -45,7 +45,7 @@ public class RegistryTest extends ATest {
 	};
 	
 	public void testAddInvoker() {
-		MockRegistry.clear();
+		
 		Registry.debug();
 		
 		assertAddA();
@@ -119,7 +119,7 @@ public class RegistryTest extends ATest {
 	}
 	
 	public void testReplaceA_withB_withA() {
-		MockRegistry.clear();
+		
 		Registry.debug();
 		
 		I_Map map = MapFactory.create();
@@ -142,7 +142,7 @@ public class RegistryTest extends ATest {
 	}
 	
 	public void testCheckedReplaceA_withB_withA() throws InvocationException {
-		MockRegistry.clear();
+		
 		Registry.debug();
 		
 		I_Map map = MapFactory.create();
@@ -174,7 +174,7 @@ public class RegistryTest extends ATest {
 	}
 	
 	public void testAddSingleInvoker() {
-		MockRegistry.clear();
+		
 		Registry.addInvoker(KEY_A, INVOKER_A);
 		
 		I_Invoker isInA = Registry.getInvoker(KEY_A);
@@ -183,14 +183,14 @@ public class RegistryTest extends ATest {
 		Registry.addInvoker(KEY_A, INVOKER_B);
 		assertEquals(INVOKER_A_RETURN, isInA.invoke(null));
 		
-		MockRegistry.clear();
-		Registry.addInvoker(KEY_A, INVOKER_B);
-		isInA = Registry.getInvoker(KEY_A);
-		assertEquals(INVOKER_B_RETURN, isInA.invoke(null));
+		
+		Registry.addInvoker(KEY_B, INVOKER_B);
+		I_Invoker isInB = Registry.getInvoker(KEY_B);
+		assertEquals(INVOKER_B_RETURN, isInB.invoke(null));
 	}
 	
 	public void testAddOrReplaceSingleInvoker() {
-		MockRegistry.clear();
+		
 		Registry.addOrReplaceInvoker(KEY_A, INVOKER_A);
 		
 		I_Invoker isInA = Registry.getInvoker(KEY_A);
@@ -203,7 +203,7 @@ public class RegistryTest extends ATest {
 	
 	
 	public void testAddSingleCheckedInvoker() throws Exception {
-		MockRegistry.clear();
+		
 		Registry.addCheckedInvoker(KEY_A, CHECKED_INVOKER_A);
 		
 		I_CheckedInvoker isInA = Registry.getCheckedInvoker(KEY_A);
@@ -212,14 +212,14 @@ public class RegistryTest extends ATest {
 		Registry.addCheckedInvoker(KEY_A, CHECKED_INVOKER_B);
 		assertEquals(CHECKED_INVOKER_A_RETURN, isInA.invoke(null));
 		
-		MockRegistry.clear();
-		Registry.addCheckedInvoker(KEY_A, CHECKED_INVOKER_B);
-		isInA = Registry.getCheckedInvoker(KEY_A);
-		assertEquals(CHECKED_INVOKER_B_RETURN, isInA.invoke(null));
+		
+		Registry.addCheckedInvoker(KEY_B, CHECKED_INVOKER_B);
+		I_CheckedInvoker isInB = Registry.getCheckedInvoker(KEY_B);
+		assertEquals(CHECKED_INVOKER_B_RETURN, isInB.invoke(null));
 	}
 	
 	public void testAddOrReplaceSingleCheckedInvoker() throws Exception {
-		MockRegistry.clear();
+		
 		Registry.addOrReplaceCheckedInvoker(KEY_A, CHECKED_INVOKER_A);
 		
 		I_CheckedInvoker isInA = Registry.getCheckedInvoker(KEY_A);

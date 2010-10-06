@@ -17,8 +17,7 @@ public class CacheTests extends ATest {
 	private static final String VALUE_1 = "value#1";
 	private static final String KEY_1 = "/key#1";
 	private static MockClock CLOCK = new MockClock();
-	private boolean setup = false;
-	
+
 	public void testRegistryInvokers() {
 		setUp();
 		
@@ -43,25 +42,28 @@ public class CacheTests extends ATest {
 		assertTrue(delegate instanceof CacheRemover);
 	}
 
-	
 	public void setUp() {
-		if (!setup) {
-			I_Map map = MapFactory.create();
-			map.put(InvokerNames.CLOCK, CLOCK);
-			map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
-			map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
-			map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
-			
-			Registry.addOrReplaceInvokers(map);
-			setup = true;
-		}
+		I_Map map = MapFactory.create();
+		map.put(InvokerNames.CLOCK, CLOCK);
+		map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
+		map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
+		map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
+		
+		Registry.addOrReplaceInvokers(map);
 	}
 	
 	public void testCacheInteraction() {
 		//add extra call for gwt unit test
 		setUp();
-		CacheWriter.setCLOCK(CLOCK);
 		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
+		assertTrue(CACHE_WRITER instanceof ProxyInvoker);
+		I_Invoker delegate = ((ProxyInvoker) CACHE_WRITER).getDelegate();
+		assertTrue(delegate instanceof CacheWriter);
+		I_Invoker wtfClock = CacheWriter.getCLOCK();
+		assertTrue(wtfClock instanceof ProxyInvoker);
+		delegate = ((ProxyInvoker) wtfClock).getDelegate();
+		assertTrue(delegate instanceof MockClock);
+		
 		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
 		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
 		
