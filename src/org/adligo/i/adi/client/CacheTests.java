@@ -1,13 +1,6 @@
 package org.adligo.i.adi.client;
 
 import org.adligo.i.adi.MockClock;
-import org.adligo.i.adi.client.CacheReader;
-import org.adligo.i.adi.client.CacheRemover;
-import org.adligo.i.adi.client.CacheWriter;
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.Registry;
-import org.adligo.i.adi.client.SimpleClock;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
 import org.adligo.i.util.client.I_Map;
@@ -20,25 +13,15 @@ public class CacheTests extends ATest {
 	private static final long TIME_3 = 3;
 	private static final long TIME_4 = 4;
 	private static final long TIME_5 = 5;
-	private static final long TIME_6 = 6;
-	private static final long TIME_7 = 7;
-	private static final long TIME_8 = 8;
 	
 	private static final String VALUE_1 = "value#1";
 	private static final String KEY_1 = "/key#1";
 	private static MockClock CLOCK = new MockClock();
-	
-	public void setUp() {
-		I_Map map = MapFactory.create();
-		map.put(InvokerNames.CLOCK, CLOCK);
-		map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
-		map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
-		map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
-		
-		Registry.addOrReplaceInvokers(map);
-	}
+	private boolean setup = false;
 	
 	public void testRegistryInvokers() {
+		setUp();
+		
 		I_Invoker CLOCK = Registry.getInvoker(InvokerNames.CLOCK);
 		assertTrue(CLOCK instanceof ProxyInvoker);
 		I_Invoker delegate = ((ProxyInvoker) CLOCK).getDelegate();
@@ -59,8 +42,25 @@ public class CacheTests extends ATest {
 		delegate = ((ProxyInvoker) CACHE_REMOVER).getDelegate();
 		assertTrue(delegate instanceof CacheRemover);
 	}
+
+	
+	public void setUp() {
+		if (!setup) {
+			I_Map map = MapFactory.create();
+			map.put(InvokerNames.CLOCK, CLOCK);
+			map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
+			map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
+			map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
+			
+			Registry.addOrReplaceInvokers(map);
+			setup = true;
+		}
+	}
 	
 	public void testCacheInteraction() {
+		//add extra call for gwt unit test
+		setUp();
+		CacheWriter.setCLOCK(CLOCK);
 		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
 		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
 		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
