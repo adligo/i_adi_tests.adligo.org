@@ -31,9 +31,9 @@ public class AdiEntryPoint implements EntryPoint {
 		
 		holder.addUsed(new BaseConfigProvider());
 		holder.addUsed(Cache.class);
-		holder.addUsed(new CacheReader());
-		holder.addUsed(new CacheRemover());
-		holder.addUsed(new CacheWriter());
+		holder.addUsed(CacheReader.INSTANCE);
+		holder.addUsed(CacheRemover.INSTANCE);
+		holder.addUsed(CacheWriter.INSTANCE);
 		//impl requires gwt_util
 		holder.addUsed(CheckedInvokerList.class);
 		holder.addUsed(CheckedRegistry.class);
@@ -51,9 +51,9 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(new ProxyCheckedInvoker(""));
 		holder.addUsed(new ProxyInvoker(""));
 		holder.addUsed(Registry.class);
-		holder.addUsed(new SimpleClock());
-		holder.addUsed(new SimpleSystemOut());
-		holder.addUsed(new SimpleSystemErr());
+		holder.addUsed(SimpleClock.INSTANCE);
+		holder.addUsed(SimpleSystemOut.INSTANCE);
+		holder.addUsed(SimpleSystemErr.INSTANCE);
 		holder.addUsed(StandardInvokers.class);
 		holder.addUsed(new SynchronizedCheckedInvokerProxy(new DoNothingCheckedInvoker()));
 		holder.addUsed(new SynchronizedInvokerProxy(new DoNothingInvoker()));
