@@ -1,7 +1,5 @@
 package org.adligo.i.adi;
 
-import junit.framework.TestCase;
-
 import org.adligo.i.adi.client.BaseConfigProvider;
 import org.adligo.i.adi.client.CacheReader;
 import org.adligo.i.adi.client.CacheRemover;
@@ -15,8 +13,9 @@ import org.adligo.i.adi.client.SimpleClock;
 import org.adligo.i.adi.client.SimpleSystemErr;
 import org.adligo.i.adi.client.SimpleSystemOut;
 import org.adligo.i.adi.client.StandardInvokers;
+import org.adligo.tests.ATest;
 
-public class StandardInvokersTests extends TestCase {
+public class StandardInvokersTests extends ATest {
 
 	public void setUp() {
 		Registry.addOrReplaceInvoker(InvokerNames.CLOCK, SimpleClock.INSTANCE);
