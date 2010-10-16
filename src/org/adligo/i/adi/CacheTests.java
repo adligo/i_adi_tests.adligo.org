@@ -23,7 +23,6 @@ public class CacheTests extends ATest {
 	
 	private static final String VALUE_1 = "value#1";
 	private static final String KEY_1 = "/key#1";
-	private static MockClock CLOCK = new MockClock();
 
 	public void testRegistryInvokers() {
 		setUp();
@@ -51,7 +50,7 @@ public class CacheTests extends ATest {
 
 	public void setUp() {
 		I_Map map = MapFactory.create();
-		map.put(InvokerNames.CLOCK, CLOCK);
+		map.put(InvokerNames.CLOCK, MockClock.INSTANCE);
 		map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
 		map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
 		map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
@@ -87,7 +86,7 @@ public class CacheTests extends ATest {
 		CacheWriterToken token = new CacheWriterToken();
 		token.setName(KEY_1);
 		token.setValue(VALUE_1);
-		MockClock.setTime(TIME_1);
+		MockClock.INSTANCE.setTime(TIME_1);
 		
 		//should write
 		CACHE_WRITER.invoke(token);
@@ -97,7 +96,7 @@ public class CacheTests extends ATest {
 		
 		//shouldn't write
 		token.setSetPolicy(CacheWriterToken.ADD_ONLY_IF_NOT_PRESENT);
-		MockClock.setTime(TIME_2);
+		MockClock.INSTANCE.setTime(TIME_2);
 		token.setValue(VALUE_1 + "a");
 		CACHE_WRITER.invoke(token);
 		assertEquals(VALUE_1, Cache.getItem(KEY_1));
@@ -106,7 +105,7 @@ public class CacheTests extends ATest {
 		
 		//should replace
 		token.setSetPolicy(CacheWriterToken.REPLACE_ONLY_IF_PRESENT);
-		MockClock.setTime(TIME_3);
+		MockClock.INSTANCE.setTime(TIME_3);
 		token.setValue(VALUE_1 + "b");
 		CACHE_WRITER.invoke(token);
 		assertEquals(VALUE_1 + "b", Cache.getItem(KEY_1));
@@ -137,7 +136,7 @@ public class CacheTests extends ATest {
 		token = new CacheWriterToken();
 		token.setName(KEY_1);
 		token.setValue(VALUE_1);
-		MockClock.setTime(TIME_4);
+		MockClock.INSTANCE.setTime(TIME_4);
 		CACHE_WRITER.invoke(token);
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
