@@ -48,7 +48,8 @@ public class MemoryTests extends ATest {
 		
 		token.setKey("hey");
 		token.setValue("man");
-		writer.invoke(token);
+		Boolean result = (Boolean) writer.invoke(token);
+		assertTrue(result);
 		
 		Object obj = reader.invoke("hey");
 		assertEquals("man", obj);
@@ -57,7 +58,8 @@ public class MemoryTests extends ATest {
 		assertNull(obj);
 		
 		token.setValue(null);
-		writer.invoke(token);
+		result = (Boolean) writer.invoke(token);
+		assertTrue(result);
 		obj = reader.invoke("hey");
 		assertNull(obj);
 	}
