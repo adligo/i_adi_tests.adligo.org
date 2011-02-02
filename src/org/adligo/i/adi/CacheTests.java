@@ -51,9 +51,9 @@ public class CacheTests extends ATest {
 	public void setUp() {
 		I_Map map = MapFactory.create();
 		map.put(InvokerNames.CLOCK, MockClock.INSTANCE);
-		map.put(InvokerNames.CACHE_WRITER, CacheWriter.INSTANCE);
-		map.put(InvokerNames.CACHE_READER, CacheReader.INSTANCE);
-		map.put(InvokerNames.CACHE_REMOVER, CacheRemover.INSTANCE);
+		map.put(InvokerNames.CACHE_WRITER, CacheWriterChild.INSTANCE);
+		map.put(InvokerNames.CACHE_READER, CacheReaderChild.INSTANCE);
+		map.put(InvokerNames.CACHE_REMOVER, CacheRemoverChild.INSTANCE);
 		
 		Registry.addOrReplaceInvokers(map);
 	}

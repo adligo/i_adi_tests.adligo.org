@@ -3,6 +3,7 @@ package org.adligo.i.adi.client;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
 import org.adligo.i.adi.client.models.ConfigRequest;
+import org.adligo.i.adi.client.models.MemoryWriterToken;
 import org.adligo.i.util.client.ClassUsageView;
 import org.adligo.i.util.client.I_UsageHolder;
 
@@ -33,7 +34,7 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(Cache.class);
 		holder.addUsed(CacheReader.INSTANCE);
 		holder.addUsed(CacheRemover.INSTANCE);
-		holder.addUsed(CacheWriter.INSTANCE);
+		holder.addUsed(CacheWriter.INSTANCE);			
 		//impl requires gwt_util
 		holder.addUsed(CheckedInvokerList.class);
 		holder.addUsed(CheckedRegistry.class);
@@ -48,6 +49,11 @@ public class AdiEntryPoint implements EntryPoint {
 		//impl requires gwt_util
 		holder.addUsed(InvokerList.class);
 		holder.addUsed(InvokerNames.class);
+		
+		holder.addUsed(Memory.class);
+		holder.addUsed(MemoryReader.INSTANCE);
+		holder.addUsed(MemoryWriter.INSTANCE);
+		
 		holder.addUsed(new ProxyCheckedInvoker(""));
 		holder.addUsed(new ProxyInvoker(""));
 		holder.addUsed(Registry.class);
@@ -62,7 +68,7 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(CacheRemoverToken.class);
 		holder.addUsed(new CacheWriterToken());
 		holder.addUsed(new ConfigRequest(null));
-		
+		holder.addUsed(MemoryWriterToken.class);
 	}
 
 }
