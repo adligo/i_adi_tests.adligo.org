@@ -1,6 +1,6 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.light;
 
-import org.adligo.i.adi.client.CacheReader;
+import org.adligo.i.adi.client.light.CacheReader;
 
 /**
  * this just allows me to make the CacheReader.INSTANCE protected

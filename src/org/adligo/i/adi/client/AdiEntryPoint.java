@@ -1,5 +1,12 @@
 package org.adligo.i.adi.client;
 
+import org.adligo.i.adi.client.light.Cache;
+import org.adligo.i.adi.client.light.CacheReader;
+import org.adligo.i.adi.client.light.CacheRemover;
+import org.adligo.i.adi.client.light.CacheWriter;
+import org.adligo.i.adi.client.light.MemoryReader;
+import org.adligo.i.adi.client.light.MemoryWriter;
+import org.adligo.i.adi.client.light.Memory;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
 import org.adligo.i.adi.client.models.ConfigRequest;
@@ -49,6 +56,8 @@ public class AdiEntryPoint implements EntryPoint {
 		//impl requires gwt_util
 		holder.addUsed(InvokerList.class);
 		holder.addUsed(InvokerNames.class);
+		
+		holder.addUsed(LightStandardInvokers.class);
 		
 		holder.addUsed(Memory.class);
 		holder.addUsed(MemoryReader.INSTANCE);

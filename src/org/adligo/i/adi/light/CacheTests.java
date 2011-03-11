@@ -1,9 +1,10 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.light;
 
-import org.adligo.i.adi.client.Cache;
-import org.adligo.i.adi.client.CacheReader;
-import org.adligo.i.adi.client.CacheRemover;
-import org.adligo.i.adi.client.CacheWriter;
+import org.adligo.i.adi.MockClock;
+import org.adligo.i.adi.client.light.Cache;
+import org.adligo.i.adi.client.light.CacheReader;
+import org.adligo.i.adi.client.light.CacheRemover;
+import org.adligo.i.adi.client.light.CacheWriter;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.ProxyInvoker;
@@ -80,7 +81,7 @@ public class CacheTests extends ATest {
 			caught = x;
 		}
 		assertNotNull(caught);
-		assertEquals("org.adligo.i.adi.client.CacheWriter takes a org.adligo.i.adi.client.models.CacheWriterToken and you passed it a String", 
+		assertEquals("org.adligo.i.adi.client.light.CacheWriter takes a org.adligo.i.adi.client.models.CacheWriterToken and you passed it a String", 
 				caught.getMessage());
 		
 		CacheWriterToken token = new CacheWriterToken();

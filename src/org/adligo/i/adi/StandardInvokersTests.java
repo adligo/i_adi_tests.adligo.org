@@ -1,14 +1,9 @@
 package org.adligo.i.adi;
 
 import org.adligo.i.adi.client.BaseConfigProvider;
-import org.adligo.i.adi.client.CacheReader;
-import org.adligo.i.adi.client.CacheRemover;
-import org.adligo.i.adi.client.CacheWriter;
 import org.adligo.i.adi.client.I18nConstantsFactory;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.MemoryReader;
-import org.adligo.i.adi.client.MemoryWriter;
 import org.adligo.i.adi.client.ProxyInvoker;
 import org.adligo.i.adi.client.Registry;
 import org.adligo.i.adi.client.SimpleClock;
@@ -23,6 +18,7 @@ public class StandardInvokersTests extends ATest {
 		Registry.addOrReplaceInvoker(InvokerNames.CLOCK, SimpleClock.INSTANCE);
 	}
 	
+	/*
 	public void testCacheWriter() {
 		I_Invoker in =  StandardInvokers.get(InvokerNames.CACHE_WRITER);
 		assertNotNull(in);
@@ -59,6 +55,7 @@ public class StandardInvokersTests extends ATest {
 		assertEquals(MemoryReader.class, pi.getDelegate().getClass());
 	}
 	
+	
 	public void testMemoryWriter() {
 		I_Invoker in =  StandardInvokers.get(InvokerNames.MEMORY_WRITER);
 		assertNotNull(in);
@@ -67,6 +64,7 @@ public class StandardInvokersTests extends ATest {
 		assertNotNull(pi.getDelegate());
 		assertEquals(MemoryWriter.class, pi.getDelegate().getClass());
 	}
+	*/
 	
 	public void testConfigProvider() {
 		I_Invoker in =  StandardInvokers.get(InvokerNames.CONFIGURATION_PROVIDER);

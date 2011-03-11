@@ -1,7 +1,7 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.light;
 
-import org.adligo.i.adi.client.MemoryReader;
-import org.adligo.i.adi.client.MemoryWriter;
+import org.adligo.i.adi.client.light.MemoryReader;
+import org.adligo.i.adi.client.light.MemoryWriter;
 import org.adligo.i.adi.client.models.MemoryWriterToken;
 import org.adligo.tests.ATest;
 
