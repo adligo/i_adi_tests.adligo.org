@@ -5,6 +5,7 @@ import org.adligo.i.adi.client.light.Cache;
 import org.adligo.i.adi.client.light.CacheReader;
 import org.adligo.i.adi.client.light.CacheRemover;
 import org.adligo.i.adi.client.light.CacheWriter;
+import org.adligo.i.adi.client.light.LightStandardInvokers;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.ProxyInvoker;
@@ -25,54 +26,18 @@ public class CacheTests extends ATest {
 	private static final String VALUE_1 = "value#1";
 	private static final String KEY_1 = "/key#1";
 
-	public void testRegistryInvokers() {
-		setUp();
-		
-		I_Invoker CLOCK = Registry.getInvoker(InvokerNames.CLOCK);
-		assertTrue(CLOCK instanceof ProxyInvoker);
-		I_Invoker delegate = ((ProxyInvoker) CLOCK).getDelegate();
-		assertTrue(delegate instanceof MockClock);
-		
-		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
-		assertTrue(CACHE_WRITER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_WRITER).getDelegate();
-		assertTrue(delegate instanceof CacheWriter);
-		
-		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
-		assertTrue(CACHE_READER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_READER).getDelegate();
-		assertTrue(delegate instanceof CacheReader);
-		
-		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
-		assertTrue(CACHE_REMOVER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_REMOVER).getDelegate();
-		assertTrue(delegate instanceof CacheRemover);
-	}
 
-	public void setUp() {
-		I_Map map = MapFactory.create();
-		map.put(InvokerNames.CLOCK, MockClock.INSTANCE);
-		map.put(InvokerNames.CACHE_WRITER, CacheWriterChild.INSTANCE);
-		map.put(InvokerNames.CACHE_READER, CacheReaderChild.INSTANCE);
-		map.put(InvokerNames.CACHE_REMOVER, CacheRemoverChild.INSTANCE);
-		
-		Registry.addOrReplaceInvokers(map);
-	}
 	
 	public void testCacheInteraction() {
-		//add extra call for gwt unit test
-		setUp();
-		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
-		assertTrue(CACHE_WRITER instanceof ProxyInvoker);
-		I_Invoker delegate = ((ProxyInvoker) CACHE_WRITER).getDelegate();
-		assertTrue(delegate instanceof CacheWriter);
+		I_Invoker CACHE_WRITER = LightStandardInvokers.get(InvokerNames.CACHE_WRITER);
+		Registry.addOrReplaceInvoker(InvokerNames.CLOCK, MockClock.INSTANCE);
 		I_Invoker wtfClock = CacheWriter.getCLOCK();
 		assertTrue(wtfClock instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) wtfClock).getDelegate();
+		I_Invoker delegate = ((ProxyInvoker) wtfClock).getDelegate();
 		assertTrue(delegate instanceof MockClock);
 		
-		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
-		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
+		I_Invoker CACHE_READER = LightStandardInvokers.get(InvokerNames.CACHE_READER);
+		I_Invoker CACHE_REMOVER = LightStandardInvokers.get(InvokerNames.CACHE_REMOVER);
 		
 		Exception caught = null;
 		try {
@@ -91,27 +56,21 @@ public class CacheTests extends ATest {
 		
 		//should write
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, Cache.getItem(KEY_1));
-		Long time =  Cache.getTime(KEY_1);
-		assertEquals(TIME_1, time.longValue());
+		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
 		
 		//shouldn't write
 		token.setSetPolicy(CacheWriterToken.ADD_ONLY_IF_NOT_PRESENT);
 		MockClock.INSTANCE.setTime(TIME_2);
 		token.setValue(VALUE_1 + "a");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, Cache.getItem(KEY_1));
-		time =  Cache.getTime(KEY_1);
-		assertEquals(TIME_1, time.longValue());
+		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
 		
 		//should replace
 		token.setSetPolicy(CacheWriterToken.REPLACE_ONLY_IF_PRESENT);
 		MockClock.INSTANCE.setTime(TIME_3);
 		token.setValue(VALUE_1 + "b");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1 + "b", Cache.getItem(KEY_1));
-		time =  Cache.getTime(KEY_1);
-		assertEquals(TIME_3, time.longValue());
+		assertEquals(VALUE_1 + "b", CACHE_READER.invoke(KEY_1));
 		
 		String readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertEquals(VALUE_1 + "b", readResultOne);
@@ -131,8 +90,6 @@ public class CacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		time =  Cache.getTime(KEY_1);
-		assertNull(time);
 		
 		token = new CacheWriterToken();
 		token.setName(KEY_1);
@@ -149,7 +106,5 @@ public class CacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		time =  Cache.getTime(KEY_1);
-		assertNull(time);
 	}
 }
