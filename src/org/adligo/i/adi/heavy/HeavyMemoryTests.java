@@ -1,7 +1,10 @@
 package org.adligo.i.adi.heavy;
 
+import org.adligo.i.adi.client.I_Invoker;
+import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.heavy.HeavyMemoryReader;
 import org.adligo.i.adi.client.heavy.HeavyMemoryWriter;
+import org.adligo.i.adi.client.heavy.HeavyStandardInvokers;
 import org.adligo.i.adi.client.models.MemoryWriterToken;
 import org.adligo.tests.ATest;
 
@@ -10,8 +13,8 @@ public class HeavyMemoryTests extends ATest {
 
 
 	public void testMemory() {
-		HeavyMemoryWriter writer = HeavyMemoryWriterChild.INSTANCE;
-		HeavyMemoryReader reader = HeavyMemoryReaderChild.INSTANCE;
+		I_Invoker writer = HeavyStandardInvokers.get(InvokerNames.MEMORY_WRITER);
+		I_Invoker reader = HeavyStandardInvokers.get(InvokerNames.MEMORY_READER);
 		
 		Exception caught = null;
 		try {
@@ -65,8 +68,8 @@ public class HeavyMemoryTests extends ATest {
 	}
 	
 	public void testMemoryOwnership() {
-		HeavyMemoryWriter writer = HeavyMemoryWriterChild.INSTANCE;
-		HeavyMemoryReader reader = HeavyMemoryReaderChild.INSTANCE;
+		I_Invoker writer = HeavyStandardInvokers.get(InvokerNames.MEMORY_WRITER);
+		I_Invoker reader = HeavyStandardInvokers.get(InvokerNames.MEMORY_READER);
 		
 		Object owner = new Object();
 		MemoryWriterToken token = new MemoryWriterToken();

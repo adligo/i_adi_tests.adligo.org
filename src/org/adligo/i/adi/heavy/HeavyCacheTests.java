@@ -34,43 +34,8 @@ public class HeavyCacheTests extends ATest {
 	private static final String VALUE_1 = "value#1";
 	private static final String KEY_1 = "/key#1";
 
-	public void testRegistryInvokers() {
-		setUp();
-		
-		I_Invoker CLOCK = Registry.getInvoker(InvokerNames.CLOCK);
-		assertTrue(CLOCK instanceof ProxyInvoker);
-		I_Invoker delegate = ((ProxyInvoker) CLOCK).getDelegate();
-		assertTrue(delegate instanceof MockClock);
-		
-		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
-		assertTrue(CACHE_WRITER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_WRITER).getDelegate();
-		assertTrue(delegate instanceof HeavyCacheWriter);
-		
-		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
-		assertTrue(CACHE_READER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_READER).getDelegate();
-		assertTrue(delegate instanceof HeavyCacheReader);
-		
-		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
-		assertTrue(CACHE_REMOVER instanceof ProxyInvoker);
-		delegate = ((ProxyInvoker) CACHE_REMOVER).getDelegate();
-		assertTrue(delegate instanceof HeavyCacheRemover);
-	}
 
-	public void setUp() {
-		I_Map map = MapFactory.create();
-		map.put(InvokerNames.CLOCK, MockClock.INSTANCE);
-		map.put(InvokerNames.CACHE_WRITER, HeavyCacheWriterChild.INSTANCE);
-		map.put(InvokerNames.CACHE_READER, HeavyCacheReaderChild.INSTANCE);
-		map.put(InvokerNames.CACHE_REMOVER, HeavyCacheRemoverChild.INSTANCE);
-		
-		Registry.addOrReplaceInvokers(map);
-	}
-	
 	public void testCacheInteraction() {
-		//add extra call for gwt unit test
-		setUp();
 		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
 		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
 		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);
@@ -96,27 +61,21 @@ public class HeavyCacheTests extends ATest {
 		
 		//should write
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, HeavyCache.getItem(KEY_1));
-		Long time =  HeavyCache.getTime(KEY_1);
-		assertEquals(TIME_1, time.longValue());
+		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
 		
 		//shouldn't write
 		token.setSetPolicy(CacheWriterToken.ADD_ONLY_IF_NOT_PRESENT);
 		MockClock.INSTANCE.setTime(TIME_2);
 		token.setValue(VALUE_1 + "a");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1, HeavyCache.getItem(KEY_1));
-		time =  HeavyCache.getTime(KEY_1);
-		assertEquals(TIME_1, time.longValue());
+		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
 		
 		//should replace
 		token.setSetPolicy(CacheWriterToken.REPLACE_ONLY_IF_PRESENT);
 		MockClock.INSTANCE.setTime(TIME_3);
 		token.setValue(VALUE_1 + "b");
 		CACHE_WRITER.invoke(token);
-		assertEquals(VALUE_1 + "b", HeavyCache.getItem(KEY_1));
-		time =  HeavyCache.getTime(KEY_1);
-		assertEquals(TIME_3, time.longValue());
+		assertEquals(VALUE_1 + "b", CACHE_READER.invoke(KEY_1));
 		
 		String readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertEquals(VALUE_1 + "b", readResultOne);
@@ -136,8 +95,6 @@ public class HeavyCacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		time =  HeavyCache.getTime(KEY_1);
-		assertNull(time);
 		
 		token = new CacheWriterToken();
 		token.setName(KEY_1);
@@ -154,11 +111,11 @@ public class HeavyCacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
-		time =  HeavyCache.getTime(KEY_1);
-		assertNull(time);
 	}
 
 	private void getAndAssertMockClock() {
+		Registry.addOrReplaceInvoker(InvokerNames.CLOCK, 
+				MockClock.INSTANCE);
 		I_Invoker clock = HeavyCacheWriter.getCLOCK();
 		assertTrue(clock instanceof ProxyInvoker);
 		I_Invoker delegate = ((ProxyInvoker) clock).getDelegate();
@@ -179,8 +136,6 @@ public class HeavyCacheTests extends ATest {
 	}
 	
 	public void testCacheInteractionOver3Minutes() {
-		//add extra call for gwt unit test
-		setUp();
 		I_Invoker CACHE_WRITER = Registry.getInvoker(InvokerNames.CACHE_WRITER);
 		I_Invoker CACHE_READER = Registry.getInvoker(InvokerNames.CACHE_READER);
 		I_Invoker CACHE_REMOVER = Registry.getInvoker(InvokerNames.CACHE_REMOVER);

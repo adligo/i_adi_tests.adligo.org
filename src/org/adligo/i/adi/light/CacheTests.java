@@ -39,6 +39,10 @@ public class CacheTests extends ATest {
 		I_Invoker CACHE_READER = LightStandardInvokers.get(InvokerNames.CACHE_READER);
 		I_Invoker CACHE_REMOVER = LightStandardInvokers.get(InvokerNames.CACHE_REMOVER);
 		
+		CacheRemoverToken removerSizeToken = new CacheRemoverToken();
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(0, CACHE_REMOVER.invoke(removerSizeToken));
+		
 		Exception caught = null;
 		try {
 			CACHE_WRITER.invoke("String");
@@ -48,6 +52,8 @@ public class CacheTests extends ATest {
 		assertNotNull(caught);
 		assertEquals("org.adligo.i.adi.client.light.CacheWriter takes a org.adligo.i.adi.client.models.CacheWriterToken and you passed it a String", 
 				caught.getMessage());
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(0, CACHE_REMOVER.invoke(removerSizeToken));
 		
 		CacheWriterToken token = new CacheWriterToken();
 		token.setName(KEY_1);
@@ -57,6 +63,8 @@ public class CacheTests extends ATest {
 		//should write
 		CACHE_WRITER.invoke(token);
 		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(1, CACHE_REMOVER.invoke(removerSizeToken));
 		
 		//shouldn't write
 		token.setSetPolicy(CacheWriterToken.ADD_ONLY_IF_NOT_PRESENT);
@@ -64,6 +72,8 @@ public class CacheTests extends ATest {
 		token.setValue(VALUE_1 + "a");
 		CACHE_WRITER.invoke(token);
 		assertEquals(VALUE_1, CACHE_READER.invoke(KEY_1));
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(1, CACHE_REMOVER.invoke(removerSizeToken));
 		
 		//should replace
 		token.setSetPolicy(CacheWriterToken.REPLACE_ONLY_IF_PRESENT);
@@ -71,6 +81,8 @@ public class CacheTests extends ATest {
 		token.setValue(VALUE_1 + "b");
 		CACHE_WRITER.invoke(token);
 		assertEquals(VALUE_1 + "b", CACHE_READER.invoke(KEY_1));
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(1, CACHE_REMOVER.invoke(removerSizeToken));
 		
 		String readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertEquals(VALUE_1 + "b", readResultOne);
@@ -81,6 +93,8 @@ public class CacheTests extends ATest {
 		removalToken.setType(CacheRemoverToken.SWEEP_ALL_TYPE);
 		CACHE_REMOVER.invoke(removalToken);
 		
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(1, CACHE_REMOVER.invoke(removerSizeToken));
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertEquals(VALUE_1 + "b", readResultOne);
 		
@@ -106,5 +120,9 @@ public class CacheTests extends ATest {
 		
 		readResultOne = (String) CACHE_READER.invoke(KEY_1);
 		assertNull(readResultOne);
+		
+		removerSizeToken.setType(CacheRemoverToken.GET_SIZE_TYPE);
+		assertEquals(0, CACHE_REMOVER.invoke(removerSizeToken));
+		
 	}
 }
