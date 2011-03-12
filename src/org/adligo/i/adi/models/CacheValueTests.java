@@ -12,25 +12,25 @@ public class CacheValueTests extends ATest {
 	}
 	
 	public void testTimeCrunchString() {
-		CacheValue cv = new CacheValue("", 0, "hey");
-		assertEquals("/0/0@" + cv.hashCode(),cv.getTimeCrunchString());
+		CacheValue cv = new CacheValue("/parent/local", 0, "hey");
+		assertEquals("/0/parent/0@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",1000, "hey");
-		assertEquals("/0/1000@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",1000, "hey");
+		assertEquals("/0/parent/1000@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",59999, "hey");
-		assertEquals("/0/59999@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",59999, "hey");
+		assertEquals("/0/parent/59999@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",60000, "hey");
-		assertEquals("/1/60000@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",60000, "hey");
+		assertEquals("/1/parent/60000@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",-1, "hey");
-		assertEquals("/0/-1@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",-1, "hey");
+		assertEquals("/0/parent/-1@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",-59999, "hey");
-		assertEquals("/0/-59999@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",-59999, "hey");
+		assertEquals("/0/parent/-59999@local",cv.getTimeCrunchString());
 		
-		cv = new CacheValue("",-60000, "hey");
-		assertEquals("/-1/-60000@" + cv.hashCode(),cv.getTimeCrunchString());
+		cv = new CacheValue("/parent/local",-60000, "hey");
+		assertEquals("/-1/parent/-60000@local",cv.getTimeCrunchString());
 	}
 }
