@@ -1,5 +1,8 @@
 package org.adligo.i.adi.light;
 
+import org.adligo.i.adi.client.I_Invoker;
+import org.adligo.i.adi.client.InvokerNames;
+import org.adligo.i.adi.client.light.LightStandardInvokers;
 import org.adligo.i.adi.client.light.MemoryReader;
 import org.adligo.i.adi.client.light.MemoryWriter;
 import org.adligo.i.adi.client.models.MemoryValue;
@@ -11,8 +14,8 @@ public class MemoryTests extends ATest {
 
 
 	public void testMemory() {
-		MemoryWriter writer = MemoryWriterChild.INSTANCE;
-		MemoryReader reader = MemoryReaderChild.INSTANCE;
+		I_Invoker writer = LightStandardInvokers.get(InvokerNames.MEMORY_WRITER);
+		I_Invoker reader = LightStandardInvokers.get(InvokerNames.MEMORY_READER);
 		
 		Exception caught = null;
 		try {
@@ -64,7 +67,7 @@ public class MemoryTests extends ATest {
 		obj = reader.invoke("hey");
 		assertNull(obj);
 		
-		Object firstOwner = new Object();
+		String firstOwner = "firstOwner";
 		token.setValue("owned");
 		token.setOwner(firstOwner);
 		result = (Boolean) writer.invoke(token);
@@ -103,8 +106,25 @@ public class MemoryTests extends ATest {
 		assertTrue(result);
 		assertEquals("owned2", reader.invoke("hey"));
 		
+		// if the owner .equals another owner
+		// it should still throw this exception
+		token.setValue("owned2");
+		token.setOwner(new String(firstOwner));
+		caught = null;
+		try {
+			writer.invoke(token);
+		} catch (Exception x) {
+			caught = x;
+		}
+		assertNotNull(caught);
+		assertTrue(caught instanceof IllegalArgumentException);
+		assertEquals(MemoryWriter.ONLY_THE_OWNER_OF_A_MEMORY_VALUE_IS_ALLOWED_TO_MODIFY_IT
+				+ token,
+				caught.getMessage());
+		assertEquals("owned2", reader.invoke("hey"));
 		
 		token.setValue(null);
+		token.setOwner(firstOwner);
 		result = (Boolean) writer.invoke(token);
 		assertTrue(result);
 		assertNull(reader.invoke("hey"));

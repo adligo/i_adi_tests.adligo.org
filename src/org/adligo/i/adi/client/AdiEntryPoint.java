@@ -7,10 +7,12 @@ import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
 import org.adligo.i.adi.client.heavy.HeavyMemory;
 import org.adligo.i.adi.client.heavy.HeavyMemoryReader;
 import org.adligo.i.adi.client.heavy.HeavyMemoryWriter;
+import org.adligo.i.adi.client.heavy.HeavyStandardInvokers;
 import org.adligo.i.adi.client.light.Cache;
 import org.adligo.i.adi.client.light.CacheReader;
 import org.adligo.i.adi.client.light.CacheRemover;
 import org.adligo.i.adi.client.light.CacheWriter;
+import org.adligo.i.adi.client.light.LightStandardInvokers;
 import org.adligo.i.adi.client.light.MemoryReader;
 import org.adligo.i.adi.client.light.MemoryWriter;
 import org.adligo.i.adi.client.light.Memory;
@@ -51,9 +53,9 @@ public class AdiEntryPoint implements EntryPoint {
 		
 		holder.addUsed(new BaseConfigProvider());
 		holder.addUsed(Cache.class);
-		holder.addUsed(CacheReader.INSTANCE);
-		holder.addUsed(CacheRemover.INSTANCE);
-		holder.addUsed(CacheWriter.INSTANCE);		
+		holder.addUsed(CacheReader.class);
+		holder.addUsed(CacheRemover.class);
+		holder.addUsed(CacheWriter.class);		
 		holder.addUsed(new CacheValue("", 1, ""));
 		//impl requires gwt_util
 		holder.addUsed(CheckedInvokerList.class);
@@ -64,12 +66,12 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(EventDelegator.class);
 		
 		holder.addUsed(HeavyCache.class);
-		holder.addUsed(HeavyCacheRemover.INSTANCE);
-		holder.addUsed(HeavyCacheWriter.INSTANCE);
-		holder.addUsed(HeavyCacheReader.INSTANCE);
+		holder.addUsed(HeavyCacheRemover.class);
+		holder.addUsed(HeavyCacheWriter.class);
+		holder.addUsed(HeavyCacheReader.class);
 		holder.addUsed(HeavyMemory.class);
-		holder.addUsed(HeavyMemoryReader.INSTANCE);
-		holder.addUsed(HeavyMemoryWriter.INSTANCE);
+		holder.addUsed(HeavyMemoryReader.class);
+		holder.addUsed(HeavyMemoryWriter.class);
 		holder.addUsed(HeavyStandardInvokers.class);
 		
 		holder.addUsed(I18nConstantsFactory.class);
@@ -84,8 +86,8 @@ public class AdiEntryPoint implements EntryPoint {
 		
 		holder.addUsed(new MemoryValue("",""));
 		holder.addUsed(Memory.class);
-		holder.addUsed(MemoryReader.INSTANCE);
-		holder.addUsed(MemoryWriter.INSTANCE);
+		holder.addUsed(MemoryReader.class);
+		holder.addUsed(MemoryWriter.class);
 		
 		holder.addUsed(new ProxyCheckedInvoker(""));
 		holder.addUsed(new ProxyInvoker(""));
