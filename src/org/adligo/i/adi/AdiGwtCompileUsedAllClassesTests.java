@@ -23,7 +23,7 @@ public class AdiGwtCompileUsedAllClassesTests extends ATest {
 		Set<Class<?>> classesLight = GwtCompileUsedAllClassesAsserter.getClasses(
 				"org.adligo.i.adi.client.light", ignore);
 		classes.addAll(classesLight);
-		assertEquals("there should be classes in org.adligo.i.adi.client ", 46, classes.size());
+		assertEquals("there should be classes in org.adligo.i.adi.client ", 47, classes.size());
 		
 		GwtCompileUsedAllClassesAsserter holder = new GwtCompileUsedAllClassesAsserter();
 		AdiEntryPoint entryPoint = new AdiEntryPoint(holder);

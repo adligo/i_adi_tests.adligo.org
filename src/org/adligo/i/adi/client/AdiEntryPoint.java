@@ -75,6 +75,7 @@ public class AdiEntryPoint implements EntryPoint {
 		holder.addUsed(HeavyStandardInvokers.class);
 		
 		holder.addUsed(I18nConstantsFactory.class);
+		holder.addUsed(I_Cacheable.class);
 		holder.addUsed(I_CheckedInvoker.class);
 		holder.addUsed(I_Invoker.class);
 		holder.addUsed(new InvocationException());
