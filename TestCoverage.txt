@@ -1,6 +1,5 @@
 Date,Package,Coverage,Instructions
-11/14/2012,org.adligo.models.core.client,67.6%,2286
-11/14/2012,org.adligo.models.core.client.ids,46.4%,1066
-11/14/2012,org.adligo.models.core.client.util,27.4%,545
-11/14/2012,org.adligo.models.core.relations.client,44.6%
-11/14/2012,org.adligo.models.core.client.i18n,0.0%,605
+11/14/2012,org.adligo.i.adi.client,51.0%,2286
+11/14/2012,org.adligo.i.adi.client.models,74.0%,1066
+11/14/2012,org.adligo.i.adi.client.light,83.9%,545
+11/14/2012,org.adligo.i.adi.client.heavy,87.6%,605
