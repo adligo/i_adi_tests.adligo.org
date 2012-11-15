@@ -1,0 +1,5 @@
+Date,Package,Coverage
+11/14/2012,org.adligo.i.adi.client,51.0%
+11/14/2012,org.adligo.i.adi.client.models,74.0%
+11/14/2012,org.adligo.i.adi.client.models.light,83.9%
+11/14/2012,org.adligo.i.adi.client.models.heavy,87.6%
