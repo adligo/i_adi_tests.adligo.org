@@ -1,21 +1,16 @@
 package org.adligo.i.adi.heavy;
 
 import org.adligo.i.adi.MockClock;
-import org.adligo.i.adi.client.heavy.HeavyCache;
-import org.adligo.i.adi.client.heavy.HeavyCacheReader;
-import org.adligo.i.adi.client.heavy.HeavyCacheRemover;
-import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.ProxyInvoker;
 import org.adligo.i.adi.client.Registry;
+import org.adligo.i.adi.client.heavy.HeavyCacheReader;
+import org.adligo.i.adi.client.heavy.HeavyCacheRemover;
+import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
-import org.adligo.i.util.client.I_Map;
-import org.adligo.i.util.client.MapFactory;
 import org.adligo.tests.ATest;
-
-import com.sun.xml.internal.ws.wsdl.writer.document.StartWithExtensionsType;
 
 public class HeavyCacheTests extends ATest {
 	private static final long TIME_0 = 0;
