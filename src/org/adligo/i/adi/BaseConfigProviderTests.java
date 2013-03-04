@@ -4,8 +4,6 @@ import org.adligo.i.adi.client.BaseConfigProvider;
 import org.adligo.i.adi.client.models.ConfigRequest;
 import org.adligo.tests.ATest;
 
-import com.sun.tools.internal.jxc.ConfigReader;
-
 public class BaseConfigProviderTests extends ATest {
 
 	public void testInvoke() {
