@@ -1,4 +1,4 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.tests;
 
 import org.adligo.i.adi.client.BaseConfigProvider;
 import org.adligo.i.adi.client.models.ConfigRequest;

@@ -1,6 +1,5 @@
-package org.adligo.i.adi.light;
+package org.adligo.i.adi.tests.light;
 
-import org.adligo.i.adi.MockClock;
 import org.adligo.i.adi.client.light.Cache;
 import org.adligo.i.adi.client.light.CacheReader;
 import org.adligo.i.adi.client.light.CacheRemover;
@@ -12,6 +11,7 @@ import org.adligo.i.adi.client.ProxyInvoker;
 import org.adligo.i.adi.client.Registry;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
+import org.adligo.i.adi.tests.MockClock;
 import org.adligo.i.util.client.I_Map;
 import org.adligo.i.util.client.MapFactory;
 import org.adligo.tests.ATest;

@@ -1,6 +1,5 @@
-package org.adligo.i.adi.heavy;
+package org.adligo.i.adi.tests.heavy;
 
-import org.adligo.i.adi.MockClock;
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;
 import org.adligo.i.adi.client.ProxyInvoker;
@@ -10,6 +9,7 @@ import org.adligo.i.adi.client.heavy.HeavyCacheRemover;
 import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
 import org.adligo.i.adi.client.models.CacheRemoverToken;
 import org.adligo.i.adi.client.models.CacheWriterToken;
+import org.adligo.i.adi.tests.MockClock;
 import org.adligo.tests.ATest;
 
 public class HeavyCacheTests extends ATest {

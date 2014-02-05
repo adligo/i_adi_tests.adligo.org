@@ -1,4 +1,4 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.tests;
 
 import org.adligo.i.adi.client.ProxyInvoker;
 import org.adligo.tests.ATest;

@@ -1,4 +1,4 @@
-package org.adligo.i.adi.models;
+package org.adligo.i.adi.tests.models;
 
 import org.adligo.i.adi.client.models.MemoryValue;
 import org.adligo.tests.ATest;

@@ -1,4 +1,4 @@
-package org.adligo.i.adi.models;
+package org.adligo.i.adi.tests.models;
 
 import org.adligo.i.adi.client.models.CacheValue;
 import org.adligo.tests.ATest;

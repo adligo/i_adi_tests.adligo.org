@@ -1,4 +1,4 @@
-package org.adligo.i.adi.heavy;
+package org.adligo.i.adi.tests.heavy;
 
 import org.adligo.i.adi.client.I_Invoker;
 import org.adligo.i.adi.client.InvokerNames;

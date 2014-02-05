@@ -1,4 +1,4 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.tests;
 
 import org.adligo.i.adi.client.models.ReferenceDomain;
 import org.adligo.i.log.client.Log;

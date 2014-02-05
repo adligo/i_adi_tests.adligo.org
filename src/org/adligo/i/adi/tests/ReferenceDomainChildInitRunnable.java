@@ -1,4 +1,4 @@
-package org.adligo.i.adi;
+package org.adligo.i.adi.tests;
 
 import java.util.Collections;
 import java.util.HashMap;
