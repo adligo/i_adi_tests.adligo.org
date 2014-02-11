@@ -4,5 +4,5 @@ test_output/
 test_failure.properties
 gwt_test_output/
 gwt_test_reports/
-adi_tests.jar
+i_adi_tests*.jar
 test_reports/
