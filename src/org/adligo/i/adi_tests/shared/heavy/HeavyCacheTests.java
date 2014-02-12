@@ -46,7 +46,7 @@ public class HeavyCacheTests extends ATest {
 			caught = x;
 		}
 		assertNotNull(caught);
-		assertEquals("org.adligo.i.adi.client.heavy.HeavyCacheWriter takes a org.adligo.i.adi.client.models.CacheWriterToken and you passed it a String", 
+		assertEquals("org.adligo.i.adi.shared.heavy.HeavyCacheWriter takes a org.adligo.i.adi.shared.models.CacheWriterToken and you passed it a String", 
 				caught.getMessage());
 		
 		CacheWriterToken token = new CacheWriterToken();
