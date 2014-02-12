@@ -3,3 +3,7 @@ Date,Package,Coverage,Instructions
 11/14/2012,org.adligo.i.adi.client.models,74.0%,1066
 11/14/2012,org.adligo.i.adi.client.light,83.9%,545
 11/14/2012,org.adligo.i.adi.client.heavy,87.6%,605
+2/11/2014,org.adligo.i.adi.shared,48.6%,2286
+2/11/2014,org.adligo.i.adi.shared.models,73.5%,1066
+2/11/2014,org.adligo.i.adi.shared.light,83.9%,545
+2/11/2014,org.adligo.i.adi.shared.heavy,87.6%,605
