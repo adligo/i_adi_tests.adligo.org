@@ -1,6 +1,6 @@
-package org.adligo.i.adi.tests.models;
+package org.adligo.i.adi.shared.models.tests;
 
-import org.adligo.i.adi.client.models.MemoryValue;
+import org.adligo.i.adi.shared.models.MemoryValue;
 import org.adligo.tests.ATest;
 
 public class MemoryValueTests extends ATest {

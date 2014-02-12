@@ -1,7 +1,7 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.BaseConfigProvider;
-import org.adligo.i.adi.client.models.ConfigRequest;
+import org.adligo.i.adi.shared.BaseConfigProvider;
+import org.adligo.i.adi.shared.models.ConfigRequest;
 import org.adligo.tests.ATest;
 
 public class BaseConfigProviderTests extends ATest {

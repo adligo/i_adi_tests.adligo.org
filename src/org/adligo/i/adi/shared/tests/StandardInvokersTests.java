@@ -1,20 +1,20 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.BaseConfigProvider;
-import org.adligo.i.adi.client.I18nConstantsFactory;
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.ProxyInvoker;
-import org.adligo.i.adi.client.Registry;
-import org.adligo.i.adi.client.SimpleClock;
-import org.adligo.i.adi.client.SimpleSystemErr;
-import org.adligo.i.adi.client.SimpleSystemOut;
-import org.adligo.i.adi.client.StandardInvokers;
-import org.adligo.i.adi.client.heavy.HeavyCacheReader;
-import org.adligo.i.adi.client.heavy.HeavyCacheRemover;
-import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
-import org.adligo.i.adi.client.heavy.HeavyMemoryReader;
-import org.adligo.i.adi.client.heavy.HeavyMemoryWriter;
+import org.adligo.i.adi.shared.BaseConfigProvider;
+import org.adligo.i.adi.shared.I18nConstantsFactory;
+import org.adligo.i.adi.shared.I_Invoker;
+import org.adligo.i.adi.shared.InvokerNames;
+import org.adligo.i.adi.shared.ProxyInvoker;
+import org.adligo.i.adi.shared.Registry;
+import org.adligo.i.adi.shared.SimpleClock;
+import org.adligo.i.adi.shared.SimpleSystemErr;
+import org.adligo.i.adi.shared.SimpleSystemOut;
+import org.adligo.i.adi.shared.StandardInvokers;
+import org.adligo.i.adi.shared.heavy.HeavyCacheReader;
+import org.adligo.i.adi.shared.heavy.HeavyCacheRemover;
+import org.adligo.i.adi.shared.heavy.HeavyCacheWriter;
+import org.adligo.i.adi.shared.heavy.HeavyMemoryReader;
+import org.adligo.i.adi.shared.heavy.HeavyMemoryWriter;
 import org.adligo.tests.ATest;
 
 public class StandardInvokersTests extends ATest {

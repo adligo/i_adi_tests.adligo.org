@@ -1,6 +1,6 @@
-package org.adligo.i.adi.tests.models;
+package org.adligo.i.adi.shared.models.tests;
 
-import org.adligo.i.adi.client.models.CacheValue;
+import org.adligo.i.adi.shared.models.CacheValue;
 import org.adligo.tests.ATest;
 
 public class CacheValueTests extends ATest {

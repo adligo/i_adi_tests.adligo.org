@@ -1,8 +1,8 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.models.ReferenceDomain;
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
+import org.adligo.i.adi.shared.models.ReferenceDomain;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
 
 /**
  * this tests the overflow of the default 16 thread write suggestion

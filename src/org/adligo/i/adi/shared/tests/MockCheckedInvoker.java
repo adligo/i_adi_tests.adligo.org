@@ -1,7 +1,7 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.I_CheckedInvoker;
-import org.adligo.i.adi.client.InvocationException;
+import org.adligo.i.adi.shared.I_CheckedInvoker;
+import org.adligo.i.adi.shared.InvocationException;
 
 public class MockCheckedInvoker implements I_CheckedInvoker {
 	private I_MockCheckedInvokerCallback checkedInvoker;

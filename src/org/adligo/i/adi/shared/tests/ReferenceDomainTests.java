@@ -1,15 +1,15 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.Set;
 
-import org.adligo.i.adi.client.models.ReferenceDomain;
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
+import org.adligo.i.adi.shared.models.ReferenceDomain;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
 import org.adligo.tests.ATest;
 import org.adligo.tests.I_TimedTest;
 

@@ -1,13 +1,13 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.I_CheckedInvoker;
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvocationException;
-import org.adligo.i.adi.client.Registry;
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
-import org.adligo.i.util.client.I_Map;
-import org.adligo.i.util.client.MapFactory;
+import org.adligo.i.adi.shared.I_CheckedInvoker;
+import org.adligo.i.adi.shared.I_Invoker;
+import org.adligo.i.adi.shared.InvocationException;
+import org.adligo.i.adi.shared.Registry;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
+import org.adligo.i.util.shared.I_Map;
+import org.adligo.i.util.shared.MapFactory;
 import org.adligo.tests.ATest;
 
 public class RegistryTest extends ATest {

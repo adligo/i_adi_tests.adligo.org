@@ -1,15 +1,15 @@
-package org.adligo.i.adi.tests.heavy;
+package org.adligo.i.adi.shared.heavy.tests;
 
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.ProxyInvoker;
-import org.adligo.i.adi.client.Registry;
-import org.adligo.i.adi.client.heavy.HeavyCacheReader;
-import org.adligo.i.adi.client.heavy.HeavyCacheRemover;
-import org.adligo.i.adi.client.heavy.HeavyCacheWriter;
-import org.adligo.i.adi.client.models.CacheRemoverToken;
-import org.adligo.i.adi.client.models.CacheWriterToken;
-import org.adligo.i.adi.tests.MockClock;
+import org.adligo.i.adi.shared.I_Invoker;
+import org.adligo.i.adi.shared.InvokerNames;
+import org.adligo.i.adi.shared.ProxyInvoker;
+import org.adligo.i.adi.shared.Registry;
+import org.adligo.i.adi.shared.heavy.HeavyCacheReader;
+import org.adligo.i.adi.shared.heavy.HeavyCacheRemover;
+import org.adligo.i.adi.shared.heavy.HeavyCacheWriter;
+import org.adligo.i.adi.shared.models.CacheRemoverToken;
+import org.adligo.i.adi.shared.models.CacheWriterToken;
+import org.adligo.i.adi.shared.tests.MockClock;
 import org.adligo.tests.ATest;
 
 public class HeavyCacheTests extends ATest {

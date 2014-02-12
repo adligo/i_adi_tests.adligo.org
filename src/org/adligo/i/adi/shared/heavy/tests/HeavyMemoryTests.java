@@ -1,11 +1,10 @@
-package org.adligo.i.adi.tests.heavy;
+package org.adligo.i.adi.shared.heavy.tests;
 
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.heavy.HeavyMemoryReader;
-import org.adligo.i.adi.client.heavy.HeavyMemoryWriter;
-import org.adligo.i.adi.client.heavy.HeavyStandardInvokers;
-import org.adligo.i.adi.client.models.MemoryWriterToken;
+import org.adligo.i.adi.shared.I_Invoker;
+import org.adligo.i.adi.shared.InvokerNames;
+import org.adligo.i.adi.shared.heavy.HeavyMemoryWriter;
+import org.adligo.i.adi.shared.heavy.HeavyStandardInvokers;
+import org.adligo.i.adi.shared.models.MemoryWriterToken;
 import org.adligo.tests.ATest;
 
 public class HeavyMemoryTests extends ATest {

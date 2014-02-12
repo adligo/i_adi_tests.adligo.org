@@ -1,12 +1,12 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.adligo.i.adi.client.models.ReferenceDomain;
-import org.adligo.i.log.client.Log;
-import org.adligo.i.log.client.LogFactory;
+import org.adligo.i.adi.shared.models.ReferenceDomain;
+import org.adligo.i.log.shared.Log;
+import org.adligo.i.log.shared.LogFactory;
 
 /**
  * this populates the referenceDomain with its value under the paths;

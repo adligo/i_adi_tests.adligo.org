@@ -1,6 +1,6 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
-import org.adligo.i.adi.client.ProxyInvoker;
+import org.adligo.i.adi.shared.ProxyInvoker;
 import org.adligo.tests.ATest;
 
 public class ProxyInvokerTests extends ATest {

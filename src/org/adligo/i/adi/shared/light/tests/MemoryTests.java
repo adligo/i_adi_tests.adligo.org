@@ -1,12 +1,10 @@
-package org.adligo.i.adi.tests.light;
+package org.adligo.i.adi.shared.light.tests;
 
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.light.LightStandardInvokers;
-import org.adligo.i.adi.client.light.MemoryReader;
-import org.adligo.i.adi.client.light.MemoryWriter;
-import org.adligo.i.adi.client.models.MemoryValue;
-import org.adligo.i.adi.client.models.MemoryWriterToken;
+import org.adligo.i.adi.shared.I_Invoker;
+import org.adligo.i.adi.shared.InvokerNames;
+import org.adligo.i.adi.shared.light.LightStandardInvokers;
+import org.adligo.i.adi.shared.light.MemoryWriter;
+import org.adligo.i.adi.shared.models.MemoryWriterToken;
 import org.adligo.tests.ATest;
 
 public class MemoryTests extends ATest {

@@ -1,9 +1,9 @@
-package org.adligo.i.adi.tests;
+package org.adligo.i.adi.shared.tests;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.adligo.i.adi.client.I_Invoker;
+import org.adligo.i.adi.shared.I_Invoker;
 
 public class MockOutErrInvoker implements I_Invoker {
 	private List<String> messages = new ArrayList<String>();
