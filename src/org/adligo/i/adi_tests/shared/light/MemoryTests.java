@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.light.tests;
+package org.adligo.i.adi_tests.shared.light;
 
 import org.adligo.i.adi.shared.I_Invoker;
 import org.adligo.i.adi.shared.InvokerNames;

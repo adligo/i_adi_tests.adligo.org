@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.models.tests;
+package org.adligo.i.adi_tests.shared.models;
 
 import org.adligo.i.adi.shared.models.MemoryWriterToken;
 import org.adligo.tests.ATest;

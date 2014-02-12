@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.tests;
+package org.adligo.i.adi_tests.shared;
 
 import org.adligo.i.adi.shared.BaseConfigProvider;
 import org.adligo.i.adi.shared.I18nConstantsFactory;

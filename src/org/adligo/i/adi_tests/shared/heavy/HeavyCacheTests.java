@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.heavy.tests;
+package org.adligo.i.adi_tests.shared.heavy;
 
 import org.adligo.i.adi.shared.I_Invoker;
 import org.adligo.i.adi.shared.InvokerNames;
@@ -9,7 +9,7 @@ import org.adligo.i.adi.shared.heavy.HeavyCacheRemover;
 import org.adligo.i.adi.shared.heavy.HeavyCacheWriter;
 import org.adligo.i.adi.shared.models.CacheRemoverToken;
 import org.adligo.i.adi.shared.models.CacheWriterToken;
-import org.adligo.i.adi.shared.tests.MockClock;
+import org.adligo.i.adi_tests.shared.MockClock;
 import org.adligo.tests.ATest;
 
 public class HeavyCacheTests extends ATest {

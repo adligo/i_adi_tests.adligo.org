@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.light.tests;
+package org.adligo.i.adi_tests.shared.light;
 
 import org.adligo.i.adi.shared.I_Invoker;
 import org.adligo.i.adi.shared.InvokerNames;
@@ -8,7 +8,7 @@ import org.adligo.i.adi.shared.light.CacheWriter;
 import org.adligo.i.adi.shared.light.LightStandardInvokers;
 import org.adligo.i.adi.shared.models.CacheRemoverToken;
 import org.adligo.i.adi.shared.models.CacheWriterToken;
-import org.adligo.i.adi.shared.tests.MockClock;
+import org.adligo.i.adi_tests.shared.MockClock;
 import org.adligo.tests.ATest;
 
 public class CacheTests extends ATest {

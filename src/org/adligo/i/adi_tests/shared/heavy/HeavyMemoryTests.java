@@ -1,4 +1,4 @@
-package org.adligo.i.adi.shared.heavy.tests;
+package org.adligo.i.adi_tests.shared.heavy;
 
 import org.adligo.i.adi.shared.I_Invoker;
 import org.adligo.i.adi.shared.InvokerNames;
