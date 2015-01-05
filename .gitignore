@@ -1,8 +1,9 @@
-bin/
-classes/
-test_output/
+/bin/
+/build/
+/classes/
+/test_output/
 test_failure.properties
-gwt_test_output/
+/gwt_test_output/
 gwt_test_reports/
 i_adi_tests*.jar
-test_reports/
+/test_reports/
